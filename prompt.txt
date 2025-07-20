@@ -1,0 +1,44 @@
+You are an expert full-stack developer. I want you to build a fully responsive catering business website using Next.js (with App Router), Tailwind CSS, and Supabase. The design and layout should look and feel very similar to www.babulcaterer.com, but without copying text or images exactly — use placeholder text and free images for now.
+
+### Requirements:
+1. **Tech Stack:** Next.js 15 (App Router), Tailwind CSS, React, Supabase (for backend/database).
+2. **Pages:**
+   - **Home Page:** Hero section with a background image, heading, subheading, and "Book Now" CTA button. Include sections like "About Us," "Services," "Gallery," "Testimonials," and "Contact Us."
+   - **About Page:** A detailed about section with a banner and some text content.
+   - **Services Page:** A grid layout of services with images and descriptions.
+   - **Gallery Page:** Responsive image grid for showcasing events.
+   - **Contact Page:** Contact form (Name, Email, Phone, Message) integrated with Supabase for saving form submissions. Include Google Map embed (use placeholder).
+   - **Admin Page (Protected):** Basic dashboard to view contact form submissions from Supabase.
+
+3. **UI/UX Requirements:**
+   - Use a modern, clean, and minimal UI similar to Babul Caterer but with Tailwind-based styling.
+   - Use smooth scroll, hover effects, and a sticky navigation bar.
+   - Mobile-first responsive design.
+   - Use Tailwind typography and components (cards, buttons, forms).
+   - Add animations using Framer Motion for hero sections and image reveals.
+
+4. **Header & Footer:**
+   - Global navigation menu (Home, About, Services, Gallery, Contact).
+   - Footer with business address, contact info, and social links.
+
+5. **Supabase Integration:**
+   - Set up a `contacts` table in Supabase with columns (id, name, email, phone, message, created_at).
+   - Store contact form submissions in this table.
+   - Create a simple API route in Next.js for handling form submissions securely.
+
+6. **SEO & Performance:**
+   - Add Next.js metadata tags (title, description).
+   - Optimize images with `next/image`.
+   - Use Tailwind's built-in classes for responsive typography.
+
+7. **Extras:**
+   - Create a simple `Booking` button (not functional yet) that can open a modal form.
+   - Use placeholder images from Unsplash or Pexels.
+
+8. **Code Style:**
+   - Use modern React with hooks and server components where applicable.
+   - Organize components into `/components` and pages in `/app` directory.
+   - Write clean, commented, and production-ready code.
+
+### Deliverable:
+Generate the full project code structure with all pages, components, Tailwind setup, Supabase integration, and example content.
