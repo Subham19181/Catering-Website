@@ -58,9 +58,9 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
+            <Link href="/contact" className="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
               Book Now
-            </button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -95,9 +95,9 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="w-full mt-4 bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
+              <Link href="/contact" className="w-full mt-4 bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium block text-center">
                 Book Now
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -106,4 +106,4 @@ const Header = () => {
   )
 }
 
-export default Header 
+export default Header

@@ -1,59 +1,29 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { supabase } from '@/lib/supabase'
+import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
-export async function POST(request: NextRequest) {
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(req: NextRequest) {
+  const { name, email, phone, message } = await req.json();
+
   try {
-    const body = await request.json()
-    const { name, email, phone, message } = body
+    await resend.emails.send({
+      from: 'onboarding@resend.dev',
+      to: 'subham.work19181@gmail.com',
+      subject: `New message from ${name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'Not provided'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
 
-    // Basic validation
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: 'Name, email, and message are required' },
-        { status: 400 }
-      )
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: 'Please provide a valid email address' },
-        { status: 400 }
-      )
-    }
-
-    // Insert into Supabase
-    const { data, error } = await supabase
-      .from('contacts')
-      .insert([
-        {
-          name,
-          email,
-          phone: phone || null,
-          message,
-        }
-      ])
-      .select()
-
-    if (error) {
-      console.error('Supabase error:', error)
-      return NextResponse.json(
-        { error: 'Failed to save contact form submission' },
-        { status: 500 }
-      )
-    }
-
-    return NextResponse.json(
-      { message: 'Contact form submitted successfully', data },
-      { status: 201 }
-    )
-
+    return NextResponse.json({ message: 'Email sent successfully' });
   } catch (error) {
-    console.error('API error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
+    console.error(error);
+    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
   }
-} 
+}

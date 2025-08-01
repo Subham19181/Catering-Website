@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="min-h-screen flex flex-col">
           <Header />
-          <main className="flex-grow">
+          <main className="flex-grow lg:pt-4">
             {children}
           </main>
           <Footer />
