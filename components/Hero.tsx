@@ -1,9 +1,9 @@
 'use client'
 
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Star, Users, Calendar, Award } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
@@ -12,6 +12,7 @@ import Autoplay from 'embla-carousel-autoplay'
 type PanelData = {
   title: string;
   imageSrc: string;
+  description: string;
 };
 
 // Array containing the data for all four panels
@@ -19,18 +20,22 @@ const panelData: PanelData[] = [
   {
     title: 'Why Choose New Subham Catering Services?',
     imageSrc: '/babul-caterer-best-in-kolkata.jpg',
+    description: 'Discover the difference with our commitment to quality, service, and culinary excellence.',
   },
   {
     title: 'Best Wedding Catering In Kolkata',
     imageSrc: '/best-wedding-caterers-in-kolkata.jpg',
+    description: 'Creating unforgettable moments with exquisite menus and impeccable service for your special day.',
   },
   {
     title: 'What Makes Our Wedding Catering Exclusive?',
     imageSrc: '/Landing Page Img.jpg',
+    description: 'Personalized menus, premium ingredients, and a dedicated team to make your wedding truly unique.',
   },
   {
     title: 'Why New Subham Caterer Is The Most Trusted Caterer In Kolkata',
     imageSrc: '/Landing Page Img.jpg', // Using a placeholder as a 4th image was not found
+    description: 'Years of experience, happy clients, and a reputation for delivering exceptional catering services.',
   },
 ];
 
@@ -38,38 +43,59 @@ const panelData: PanelData[] = [
  * A single animated panel component.
  * It receives title and imageSrc as props.
  */
-const AnimatedPanel = ({ title, imageSrc }: PanelData) => {
+const AnimatedPanel = ({ title, imageSrc, description }: PanelData) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
-    // The core of the animation is here:
-    // flex-grow: Expands to fill available space.
-    // basis-0: Sets the initial size to 0, letting flex-grow control the width.
-    // hover:flex-grow-[3]: On hover, this panel's growth factor becomes 3,
-    // making it 3 times larger than its sibling which remains at 1.
-    // transition-all & duration-500: Creates a smooth animation.
-    <div
-      className="
-        relative flex-grow basis-0 cursor-pointer overflow-hidden
-        transition-all duration-500 ease-in-out
-        hover:flex-grow-[3]
-      "
+    <motion.div
+      className="relative flex-grow basis-0 cursor-pointer overflow-hidden"
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      animate={{ flexGrow: isHovered ? 3 : 1 }}
+      transition={{ duration: 0.7, ease: 'easeInOut' }}
     >
-      <Image
-        src={imageSrc}
-        alt={title}
-        layout="fill"
-        objectFit="cover"
-        className="
-          transition-transform duration-500 ease-in-out group-hover:scale-105
-        "
-      />
-      {/* Dark overlay for better text readability */}
+      <motion.div
+        className="absolute inset-0"
+        animate={{ scale: isHovered ? 1.05 : 1 }}
+        transition={{ duration: 0.7, ease: 'easeInOut' }}
+      >
+        <Image
+          src={imageSrc}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+        />
+      </motion.div>
       <div className="absolute inset-0 bg-black/40"></div>
-      
-      {/* Title text */}
-      <h3 className="absolute bottom-6 left-6 z-10 text-xl font-bold text-white md:text-2xl">
-        {title}
-      </h3>
-    </div>
+      <motion.div 
+        layout
+        className="absolute inset-0 flex flex-col p-4"
+        style={{ 
+          justifyContent: isHovered ? 'flex-start' : 'center',
+          alignItems: isHovered ? 'flex-start' : 'center',
+        }}
+      >
+        <motion.h3 
+          layout
+          className="text-center text-xl font-bold text-white md:text-2xl"
+        >
+          {title}
+        </motion.h3>
+        <AnimatePresence>
+          {isHovered && (
+            <motion.p 
+              className="mt-2 text-left text-white"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+            >
+              {description}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
   );
 };
 
@@ -243,14 +269,14 @@ export default function Hero() {
           {/* Top Row */}
           <div className="flex h-1/2 w-full">
             {topRowPanels.map((panel) => (
-              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} />
+              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} description={panel.description} />
             ))}
           </div>
           
           {/* Bottom Row */}
           <div className="flex h-1/2 w-full">
             {bottomRowPanels.map((panel) => (
-              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} />
+              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} description={panel.description} />
             ))}
           </div>
         </div>
