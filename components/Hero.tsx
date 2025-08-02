@@ -8,12 +8,77 @@ import { Star, Users, Calendar, Award } from 'lucide-react'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
+// Define the type for a single panel's data for type safety
+type PanelData = {
+  title: string;
+  imageSrc: string;
+};
+
+// Array containing the data for all four panels
+const panelData: PanelData[] = [
+  {
+    title: 'Why Choose New Subham Catering Services?',
+    imageSrc: '/babul-caterer-best-in-kolkata.jpg',
+  },
+  {
+    title: 'Best Wedding Catering In Kolkata',
+    imageSrc: '/best-wedding-caterers-in-kolkata.jpg',
+  },
+  {
+    title: 'What Makes Our Wedding Catering Exclusive?',
+    imageSrc: '/Landing Page Img.jpg',
+  },
+  {
+    title: 'Why New Subham Caterer Is The Most Trusted Caterer In Kolkata',
+    imageSrc: '/Landing Page Img.jpg', // Using a placeholder as a 4th image was not found
+  },
+];
+
+/**
+ * A single animated panel component.
+ * It receives title and imageSrc as props.
+ */
+const AnimatedPanel = ({ title, imageSrc }: PanelData) => {
+  return (
+    // The core of the animation is here:
+    // flex-grow: Expands to fill available space.
+    // basis-0: Sets the initial size to 0, letting flex-grow control the width.
+    // hover:flex-grow-[3]: On hover, this panel's growth factor becomes 3,
+    // making it 3 times larger than its sibling which remains at 1.
+    // transition-all & duration-500: Creates a smooth animation.
+    <div
+      className="
+        relative flex-grow basis-0 cursor-pointer overflow-hidden
+        transition-all duration-500 ease-in-out
+        hover:flex-grow-[3]
+      "
+    >
+      <Image
+        src={imageSrc}
+        alt={title}
+        layout="fill"
+        objectFit="cover"
+        className="
+          transition-transform duration-500 ease-in-out group-hover:scale-105
+        "
+      />
+      {/* Dark overlay for better text readability */}
+      <div className="absolute inset-0 bg-black/40"></div>
+      
+      {/* Title text */}
+      <h3 className="absolute bottom-6 left-6 z-10 text-xl font-bold text-white md:text-2xl">
+        {title}
+      </h3>
+    </div>
+  );
+};
+
 export default function Hero() {
   const services = [
     {
       title: 'Wedding Catering',
       description: 'Create unforgettable wedding experiences with our premium catering services.',
-      image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500&h=300&fit=crop',
+      image: 'https://images.unsplash.com/photo-1519225421980-716cb0215aed?w=500&h=300&fit=crop',
     },
     {
       title: 'Corporate Events',
@@ -56,14 +121,12 @@ export default function Hero() {
   ]
 
   const signatureDishes = [
-    { name: 'Dish 1', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 2', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 3', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 4', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 5', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 6', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 7', image: '/placeholder-dish.jpg' },
-    { name: 'Dish 8', image: '/placeholder-dish.jpg' },
+    { name: 'Bhetki Paturi', image: '/Special Dishes/Bhetki Paturi.jpg' },
+    { name: 'Mutton Biryani', image: '/Special Dishes/Mutton Biryani.jpg' },
+    { name: 'Pomphret Tandoori', image: '/Special Dishes/Pomphret Tandoori.jpg' },
+    { name: 'Reshmi Kebab', image: '/Special Dishes/Reshmi Kebab.jpg' },
+    { name: 'Bhetki Diamond Fry', image: '/Special Dishes/Bhetki Diamond Fry.png' },
+    { name: 'Gulab Jamun', image: '/Special Dishes/Gulab Jamun.jpg' },
   ]
 
   const testimonials = [
@@ -117,16 +180,19 @@ export default function Hero() {
     setSelectedTestimonial(null);
   };
 
+  const topRowPanels = panelData.slice(0, 2);
+  const bottomRowPanels = panelData.slice(2, 4);
+
   return (
     <>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1920&h=1080&fit=crop"
+            src="/Landing Page Img.jpg"
             alt="Catering Hero"
             fill
-            className="object-cover"
+            className="object-cover blur-sm"
             priority
           />
           <div className="absolute inset-0 bg-black/50"></div>
@@ -172,24 +238,19 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <stat.icon className="h-8 w-8 text-primary-500" />
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </motion.div>
+      <section className="hidden md:block h-screen w-full">
+        <div className="flex h-full w-full flex-col">
+          {/* Top Row */}
+          <div className="flex h-1/2 w-full">
+            {topRowPanels.map((panel) => (
+              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} />
+            ))}
+          </div>
+          
+          {/* Bottom Row */}
+          <div className="flex h-1/2 w-full">
+            {bottomRowPanels.map((panel) => (
+              <AnimatedPanel key={panel.title} title={panel.title} imageSrc={panel.imageSrc} />
             ))}
           </div>
         </div>
@@ -207,7 +268,7 @@ export default function Hero() {
             Our Signature Dishes
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {signatureDishes.map((dish, index) => (
               <motion.div
                 key={dish.name}

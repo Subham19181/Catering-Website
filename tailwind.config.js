@@ -23,6 +23,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        'bonheur-royale': ['var(--font-bonheur-royale)'],
       },
     },
   },
