@@ -25,6 +25,15 @@ module.exports = {
         sans: ['Inter', 'sans-serif'],
         'bonheur-royale': ['var(--font-bonheur-royale)'],
       },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 60s linear infinite',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
+        },
+      },
     },
   },
   plugins: [],

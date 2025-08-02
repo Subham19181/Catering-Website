@@ -19,23 +19,23 @@ type PanelData = {
 const panelData: PanelData[] = [
   {
     title: 'Why Choose New Subham Catering Services?',
-    imageSrc: '/babul-caterer-best-in-kolkata.jpg',
-    description: 'Discover the difference with our commitment to quality, service, and culinary excellence.',
+    imageSrc: '/Why Choose Us/Image 1.jpg',
+    description: 'New Subham Catering Services is your trusted partner for exceptional culinary experiences. We blend traditional flavors with modern presentation to create unforgettable moments for weddings, corporate events, and special occasions. Our team of skilled chefs uses the finest ingredients to craft personalized menus tailored to your taste and event needs. From elegant buffets to plated dinners, we focus on flawless execution and warm hospitality. With years of experience and a reputation for excellence, we ensure that every dish reflects our passion for quality and attention to detail. Choose us to make your celebration truly special and stress-free from start to finish.',
   },
   {
     title: 'Best Wedding Catering In Kolkata',
-    imageSrc: '/best-wedding-caterers-in-kolkata.jpg',
-    description: 'Creating unforgettable moments with exquisite menus and impeccable service for your special day.',
+    imageSrc: '/Why Choose Us/Image 2.jpg',
+    description: 'Experience the best wedding catering in Kolkata with New Subham Catering Services. We specialize in turning your special day into a culinary celebration with thoughtfully curated menus, exquisite flavors, and impeccable service. From traditional Bengali feasts to global cuisines, our chefs craft every dish with precision and passion. Whether it’s an intimate gathering or a grand celebration, we ensure your guests enjoy a memorable dining experience. With a reputation built on trust, taste, and timeliness, we handle every detail—from menu planning to flawless execution. Let us add flavor, elegance, and warmth to your wedding with our unmatched catering expertise.',
   },
   {
-    title: 'What Makes Our Wedding Catering Exclusive?',
-    imageSrc: '/Landing Page Img.jpg',
-    description: 'Personalized menus, premium ingredients, and a dedicated team to make your wedding truly unique.',
+    title: 'What Makes Our Catering Exclusive?',
+    imageSrc: '/Why Choose Us/Image 3.jpg',
+    description: 'What makes our catering exclusive is the perfect blend of personalization, premium quality, and passion. At New Subham Catering Services, we go beyond standard menus to craft unique culinary experiences tailored to your preferences and event theme. Every ingredient is carefully selected for freshness and flavor, and our chefs infuse creativity into every dish. From live counters to themed presentations, we offer innovative setups that delight both the eyes and the palate. Our dedicated team ensures seamless service, timely execution, and a warm, guest-focused approach. This commitment to excellence, customization, and memorable hospitality sets us apart in every celebration we serve.',
   },
   {
-    title: 'Why New Subham Caterer Is The Most Trusted Caterer In Kolkata',
-    imageSrc: '/Landing Page Img.jpg', // Using a placeholder as a 4th image was not found
-    description: 'Years of experience, happy clients, and a reputation for delivering exceptional catering services.',
+    title: 'Why We Are The Most Trusted?',
+    imageSrc: '/Why Choose Us/Image 4.jpg', // Using a placeholder as a 4th image was not found
+    description: 'Are you looking for top-quality catering services in Kolkata? Look no further than New Subham Caterer! With over 10 years of experience, we specialize in delivering exceptional food and flawless service for weddings, receptions, parties, and corporate events. Led by Babul, a trusted name in the industry, our team is known for its professionalism, creativity, and attention to detail. Whether you want traditional Bengali cuisine or a customized global menu, we make every event memorable. Join the many satisfied clients who trust us to turn their special occasions into unforgettable culinary experiences. Choose excellence—choose New Subham Caterer.',
   },
 ];
 
@@ -69,7 +69,7 @@ const AnimatedPanel = ({ title, imageSrc, description }: PanelData) => {
       <div className="absolute inset-0 bg-black/40"></div>
       <motion.div 
         layout
-        className="absolute inset-0 flex flex-col p-4"
+        className="absolute inset-0 flex flex-col p-16"
         style={{ 
           justifyContent: isHovered ? 'flex-start' : 'center',
           alignItems: isHovered ? 'flex-start' : 'center',
@@ -77,14 +77,14 @@ const AnimatedPanel = ({ title, imageSrc, description }: PanelData) => {
       >
         <motion.h3 
           layout
-          className="text-center text-xl font-bold text-white md:text-2xl"
+          className="text-center text-5xl font-bonheur-royale text-white"
         >
           {title}
         </motion.h3>
         <AnimatePresence>
           {isHovered && (
             <motion.p 
-              className="mt-2 text-left text-white"
+              className="mt-20 text-xl italic text-left text-white"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
@@ -264,6 +264,24 @@ export default function Hero() {
         </div>
       </section>
 
+      {/* Stats Section */}
+      <section className="py-3 bg-primary-100 overflow-hidden">
+        <div className="w-full overflow-hidden">
+          <div className="inline-flex animate-infinite-scroll">
+            {[...stats, ...stats, ...stats, ...stats].map((stat, index) => (
+              <div key={index} className="flex-shrink-0 sm:w-1/2 md:w-1/4 lg:w-1/5 p-6 text-center">
+                <div className="flex justify-center items-center mx-auto mb-4 h-16 w-16 rounded-full bg-primary-100">
+                  <stat.icon className="h-8 w-8 text-primary-500" />
+                </div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-gray-600">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us Section */}
       <section className="hidden md:block h-screen w-full">
         <div className="flex h-full w-full flex-col">
           {/* Top Row */}
@@ -289,9 +307,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl font-bold text-center text-gray-900 mb-12"
+            className="text-6xl font-bonheur-royale text-font-bold text-center text-gray-900 mb-12"
           >
-            Our Signature Dishes
+           Our Signature Dishes
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -313,7 +331,7 @@ export default function Hero() {
                   />
                 </div>
                 <div className="p-4 text-center">
-                  <h3 className="text-lg font-semibold text-gray-800">{dish.name}</h3>
+                  <h3 className="italic text-lg font-semibold text-gray-800">{dish.name}</h3>
                 </div>
               </motion.div>
             ))}
@@ -327,7 +345,7 @@ export default function Hero() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-4xl font-bold text-center text-gray-900 mb-12"
           >
             What Our Clients Say
@@ -341,7 +359,7 @@ export default function Hero() {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="bg-gray-50 p-8 rounded-lg shadow-md flex flex-col items-center text-center h-full cursor-pointer"
                   onClick={() => openModal(testimonial)}
                 >
@@ -357,29 +375,6 @@ export default function Hero() {
                   <p className="text-gray-700 italic line-clamp-4">{testimonial.review}</p>
                 </motion.div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <stat.icon className="h-8 w-8 text-primary-500" />
-                </div>
-                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
-                <div className="text-gray-600">{stat.label}</div>
-              </motion.div>
             ))}
           </div>
         </div>
