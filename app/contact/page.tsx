@@ -289,7 +289,7 @@ export default function Contact() {
             className="relative h-96 rounded-lg overflow-hidden shadow-lg"
           >
             {/* Google Maps Embed - Replace with actual embed code */}
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d774.0269250088878!2d88.41906283202847!3d22.65702073770495!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89e60562d2bb5%3A0x2c9ee2c9641c5a8c!2sSreenagar%20Puja%20Mandap!5e0!3m2!1sen!2sin!4v1754079125855!5m2!1sen!2sin" width="100%" height="100%" className='border-o' allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d774.0269250088878!2d88.41906283202847!3d22.65702073770495!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89e60562d2bb5%3A0x2c9ee2c9641c5a8c!2sSreenagar%20Puja%20Mandap!5e0!3m2!1sen!2sin!4v1754079125855!5m2!1sen!2sin" width="100%" height="100%" className="border-0" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </motion.div>
         </div>
       </section>
