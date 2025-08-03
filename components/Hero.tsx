@@ -147,38 +147,38 @@ export default function Hero() {
   ]
 
   const signatureDishes = [
-    { name: 'Bhetki Paturi', image: '/Special Dishes/Bhetki Paturi.jpg' },
-    { name: 'Mutton Biryani', image: '/Special Dishes/Mutton Biryani.jpg' },
-    { name: 'Pomphret Tandoori', image: '/Special Dishes/Pomphret Tandoori.jpg' },
-    { name: 'Reshmi Kebab', image: '/Special Dishes/Reshmi Kebab.jpg' },
-    { name: 'Bhetki Diamond Fry', image: '/Special Dishes/Bhetki Diamond Fry.png' },
-    { name: 'Gulab Jamun', image: '/Special Dishes/Gulab Jamun.jpg' },
+    { name: 'Bhetki Paturi', image: '/Special Dishes/Bhetki Paturi.jpg', description: 'A traditional Bengali fish delicacy, Bhetki Paturi is steamed in banana leaves with mustard paste, offering a unique flavor and aroma.' },
+    { name: 'Mutton Biryani', image: '/Special Dishes/Mutton Biryani.jpg', description: 'Fragrant Basmati rice cooked with tender mutton pieces, aromatic spices, and a hint of saffron, a true culinary delight.' },
+    { name: 'Pomphret Tandoori', image: '/Special Dishes/Pomphret Tandoori.jpg', description: 'Whole Pomfret marinated in a spicy yogurt mixture and cooked to perfection in a tandoor, resulting in a smoky and flavorful dish.' },
+    { name: 'Reshmi Kebab', image: '/Special Dishes/Reshmi Kebab.jpg', description: 'Melt-in-your-mouth chicken kebabs, subtly spiced and grilled to a creamy texture, a popular appetizer.' },
+    { name: 'Bhetki Diamond Fry', image: '/Special Dishes/Bhetki Diamond Fry.png', description: 'Crispy fried Bhetki fish, coated in a special batter, offering a delightful crunch with every bite.' },
+    { name: 'Gulab Jamun', image: '/Special Dishes/Gulab Jamun.jpg', description: 'Soft, spongy milk-solid-based sweets, deep-fried and soaked in a rose-flavored sugar syrup, a classic Indian dessert.' },
   ]
 
   const testimonials = [
     {
       name: 'John Doe',
-      picture: '/placeholder-avatar.jpg',
+      picture: '/Person Test Image.jpg',
       review: "New Subham Caterer made our event unforgettable! The food was exquisite, and the service was impeccable. Highly recommend them for any occasion. Every guest raved about the quality and presentation. Truly a five-star experience from start to finish."
     },
     {
       name: 'Jane Smith',
-      picture: '/placeholder-avatar.jpg',
+      picture: '/Person Test Image.jpg',
       review: "Absolutely fantastic catering! From the initial consultation to the last bite, everything was perfect. They truly exceeded our expectations. The attention to detail and personalized menu made all the difference. We will definitely be using them again!"
     },
     {
       name: 'Peter Jones',
-      picture: '/placeholder-avatar.jpg',
+      picture: '/Person Test Image.jpg',
       review: "The best catering service we have ever used. The food was delicious, fresh, and beautifully presented. Our guests were very impressed. The team was professional, punctual, and incredibly easy to work with. A seamless experience!"
     },
     {
       name: 'Alice Brown',
-      picture: '/placeholder-avatar.jpg',
+      picture: '/Person Test Image.jpg',
       review: "Outstanding food and service! New Subham Caterer handled our corporate event flawlessly. The variety of dishes was impressive, and everything tasted amazing. Their staff was courteous and efficient, ensuring everything ran smoothly. Thank you!"
     },
     {
       name: 'Michael Green',
-      picture: '/placeholder-avatar.jpg',
+      picture: '/Person Test Image.jpg',
       review: "Couldn't be happier with the catering for our wedding. The team was so accommodating and helped us create a menu that perfectly suited our tastes. The food was a highlight of the day, and many guests asked for their contact information. Superb!"
     },
   ]
@@ -307,31 +307,57 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-6xl font-bonheur-royale text-font-bold text-center text-gray-900 mb-12"
+            className="text-6xl font-bonheur-royale text-font-bold text-center text-gray-900 mb-12 sm:mb-16"
           >
            Our Signature Dishes
           </motion.h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-16">
             {signatureDishes.map((dish, index) => (
               <motion.div
                 key={dish.name}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
+                className="relative w-[300px] h-[325px] perspective-[2500px] mx-auto group md:w-[400px]"
               >
-                <div className="relative w-full h-48">
+                {/* Background Wrapper */}
+                <div className="absolute inset-0 z-0 transition-all duration-500 group-hover:translate-y-[-5%] group-hover:rotate-x-[25deg] group-hover:shadow-[2px_35px_32px_-8px_rgba(0,0,0,0.75)]">
+                  <Image
+                    src={dish.image}
+                    alt={dish.name + " background"}
+                    fill
+                    className="object-cover rounded-xl blur-xm"
+                  />
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+
+                {/* Dish Name */}
+                <div className="absolute w-full text-center bottom-20 z-20 transition-transform duration-500 group-hover:translate-y-[-50px] group-hover:translate-z-[100px]">
+                  {/* Larger Text */}
+                  <h2 className="flex items-center justify-center text-center text-white font-bonheur-royale text-7xl text-center justify-center font-semibold drop-shadow-lg tracking-wider transition-opacity duration-500 group-hover:opacity-0 absolute inset-0 px-4">
+                    {dish.name}
+                  </h2>
+                  {/* Smaller Text */}
+                  <h2 className="text-primary-200 font-bonheur-royale text-4xl font-semibold drop-shadow-lg tracking-wider transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                    {dish.name}
+                  </h2>
+                </div>
+
+                {/* Dish Image */}
+                <div className="absolute w-full h-auto z-10 transition-all duration-500 opacity-0 group-hover:opacity-100 group-hover:translate-y-[-30%] group-hover:translate-z-[100px]">
                   <Image
                     src={dish.image}
                     alt={dish.name}
-                    layout="fill"
-                    objectFit="cover"
-                    className="rounded-t-lg"
+                    width={300}
+                    height={250}
+                    className="mx-auto rounded-xl drop-shadow-2xl w-[250px] sm:w-[300px]"
                   />
                 </div>
-                <div className="p-4 text-center">
-                  <h3 className="italic text-lg font-semibold text-gray-800">{dish.name}</h3>
+
+                {/* Description */}
+                <div className="absolute bottom-10 px-4 text-center text-sm text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30">
+                  {dish.description}
                 </div>
               </motion.div>
             ))}
