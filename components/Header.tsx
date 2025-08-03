@@ -39,10 +39,10 @@ const Header = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
-            <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg">NS</span>
+            <div className="w-13 h-13 rounded-full bg-primary-500 flex items-center justify-center md:w-14 h-14">
+              <img src="\Logo.png" alt="Logo" className="rounded-full w-full h-full object-contain" />
             </div>
-            <span className="text-xl font-bold text-gray-900">
+            <span className="text-3xl md:text-5xl font-semibold text-primary-600 font-bonheur-royale md:leading-normal md:tracking-wider">
               New Subham Caterer
             </span>
           </Link>
@@ -58,9 +58,9 @@ const Header = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
+            <Link href="/contact" className="bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
               Book Now
-            </button>
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -95,9 +95,9 @@ const Header = () => {
                   {item.name}
                 </Link>
               ))}
-              <button className="w-full mt-4 bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium">
+              <Link href="/contact" className="w-full mt-4 bg-primary-500 text-white px-6 py-2 rounded-full hover:bg-primary-600 transition-colors duration-200 font-medium block text-center">
                 Book Now
-              </button>
+              </Link>
             </div>
           </motion.div>
         )}
@@ -106,4 +106,4 @@ const Header = () => {
   )
 }
 
-export default Header 
+export default Header

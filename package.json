@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "framer-motion": "^7.10.3",
     "lucide-react": "^0.294.0",
     "next": "^15.4.2",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "resend": "^4.7.0"
   },
   "devDependencies": {
     "@types/node": "^20",
