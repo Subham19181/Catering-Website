@@ -194,9 +194,15 @@ export default function Hero() {
   }, [emblaApi])
 
   const [showModal, setShowModal] = React.useState(false);
-  const [selectedTestimonial, setSelectedTestimonial] = React.useState(null);
+  const [selectedTestimonial, setSelectedTestimonial] = React.useState<Testimonial | null>(null);
 
-  const openModal = (testimonial) => {
+  type Testimonial = {
+  name: string;
+  picture: string;
+  review: string;
+};
+
+const openModal = (testimonial: Testimonial) => {
     setSelectedTestimonial(testimonial);
     setShowModal(true);
   };
